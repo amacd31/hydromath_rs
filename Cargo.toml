@@ -1,0 +1,4 @@
+[package]
+name = "hydromath"
+version = "0.1.0"
+authors = ["Andrew MacDonald <andrew@maccas.net>"]
