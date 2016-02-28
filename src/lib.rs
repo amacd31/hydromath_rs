@@ -1,3 +1,24 @@
+use std::slice;
+
+#[no_mangle]
+pub extern fn mse_c (obs_pointer: *const f64,
+    sim_pointer: *const f64, arr_size: usize
+) -> f64 {
+
+    let obs_arr = unsafe {
+            std::slice::from_raw_parts(
+                obs_pointer as *const f64,
+                arr_size as usize)
+    };
+    let sim_arr = unsafe {
+            std::slice::from_raw_parts(
+                sim_pointer as *const f64,
+                arr_size as usize)
+    };
+
+    return mse( obs_arr, sim_arr);
+}
+
 fn mse(obs: &[f64], sim: &[f64]) -> f64 {
     let mut sum_y: f64 = 0.0;
 
