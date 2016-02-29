@@ -1,6 +1,25 @@
 use std::slice;
 
 #[no_mangle]
+pub extern fn nse_c (obs_pointer: *const f64,
+    sim_pointer: *const f64, arr_size: usize
+) -> f64 {
+
+    let obs_arr = unsafe {
+            std::slice::from_raw_parts(
+                obs_pointer as *const f64,
+                arr_size as usize)
+    };
+    let sim_arr = unsafe {
+            std::slice::from_raw_parts(
+                sim_pointer as *const f64,
+                arr_size as usize)
+    };
+
+    return nse( obs_arr, sim_arr);
+}
+
+#[no_mangle]
 pub extern fn mse_c (obs_pointer: *const f64,
     sim_pointer: *const f64, arr_size: usize
 ) -> f64 {
@@ -75,7 +94,7 @@ pub fn nse(obs: &[f64], sim: &[f64]) -> f64 {
         e2 += bias.powf(2.0);
     }
 
-    if (e1 == 0.0f64) {
+    if e1 == 0.0f64 {
         return 1.0f64;
     }
     else {
