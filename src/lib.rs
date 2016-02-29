@@ -52,3 +52,33 @@ pub fn mse(obs: &[f64], sim: &[f64]) -> f64 {
 pub fn rmse(obs: &[f64], sim: &[f64]) -> f64 {
     return mse(obs, sim).sqrt();
 }
+
+/*
+    Nash-Sutcliffe efficiency.
+
+    References:
+        * Nash, Jea, and J. V. Sutcliffe. 1970. "River Flow Forecasting through Conceptual Models Part I-A Discussion of Principles." Journal of Hydrology 10 (3): 282-90.
+*/
+pub fn nse(obs: &[f64], sim: &[f64]) -> f64 {
+
+    let m: f64 = obs.iter().fold(0f64, std::ops::Add::add) / (obs.len() as f64);
+
+    //int t;
+    let mut e1: f64 = 0.0;
+    let mut e2: f64 = 0.0;
+
+    for (o, s) in obs.iter().zip(sim.iter()) {
+        let delta = o - s;
+        e1 += delta.powf(2.0);
+
+        let bias = o - m;
+        e2 += bias.powf(2.0);
+    }
+
+    if (e1 == 0.0f64) {
+        return 1.0f64;
+    }
+    else {
+        return 1.0f64 - e1 / e2;
+    }
+}
