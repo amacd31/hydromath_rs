@@ -75,7 +75,7 @@ fn test_rmse_perfect() {
 fn test_rmse_bad() {
     let obs: [f64; 5] = [1.,2.,3.,4.,5.];
 
-    let sum: f64 = obs.iter().fold((0 as f64), std::ops::Add::add);
+    let sum: f64 = obs.iter().fold(0f64, std::ops::Add::add);
     let m = sum / (obs.len() as f64);
     let sim = [m, m, m, m, m];
     let result = rmse(
@@ -107,8 +107,7 @@ fn test_mse_perfect() {
 fn test_mse_bad() {
     let obs: [f64; 5] = [1.,2.,3.,4.,5.];
 
-    // Hard coded because I haven't worked out how to sum Vec in rust successfully
-    let sum: f64 = 15.0;
+    let sum: f64 = obs.iter().fold(0f64, std::ops::Add::add);
     let m = sum / (obs.len() as f64);
     let sim = [m, m, m, m, m];
     let result = mse(
