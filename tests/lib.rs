@@ -96,3 +96,34 @@ fn test_nse_bad() {
 
     assert_eq!(result, 0.0);
 }
+
+#[test]
+fn test_kge_perfect() {
+    let data: &[f64; 7] = &[1., 2., 3., 4., 5., 6., 7.];
+    let s = hydromath::kge(data, data);
+    assert_eq!(s, 1.0);
+}
+
+#[test]
+fn test_kge_climatology() {
+    let obs_data: &[f64; 5] = &[1., 2., 3., 4., 5.];
+    let sim_data: &[f64; 5] = &[3., 3., 3., 3., 3.];
+    let s = hydromath::kge(obs_data, sim_data);
+    assert_eq!(s, 1.0f64 - (2.0f64).sqrt());
+}
+
+#[test]
+fn test_kge_biased_climatology() {
+    let obs_data: &[f64; 5] = &[1., 2., 3., 4., 5.];
+    let sim_data: &[f64; 5] = &[6., 6., 6., 6., 6.];
+    let s = hydromath::kge(obs_data, sim_data);
+    assert_eq!(s, 1.0f64 - (3.0f64).sqrt());
+}
+
+#[test]
+fn test_kge() {
+    let obs_data: &[f64; 13] = &[1., 2., 3., 4., 5., 6., 7., 6., 5., 4., 3., 2., 1.];
+    let sim_data: &[f64; 13] = &[1., 2., 3., 4., 5., 6., 6., 6., 5., 4., 3., 2., 1.];
+    let s = hydromath::kge(obs_data, sim_data);
+    assert_eq!(s, 0.93444263181747966307000297092599794268608093261719);
+}
