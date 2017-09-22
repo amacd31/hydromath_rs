@@ -33,6 +33,17 @@ pub extern "C" fn rmse_c(obs_pointer: *const f64, sim_pointer: *const f64, arr_s
     return rmse(obs_arr, sim_arr);
 }
 
+#[no_mangle]
+pub extern "C" fn kge_c(obs_pointer: *const f64, sim_pointer: *const f64, arr_size: usize) -> f64 {
+
+    let obs_arr =
+        unsafe { std::slice::from_raw_parts(obs_pointer as *const f64, arr_size as usize) };
+    let sim_arr =
+        unsafe { std::slice::from_raw_parts(sim_pointer as *const f64, arr_size as usize) };
+
+    return kge(obs_arr, sim_arr);
+}
+
 pub fn mse(obs: &[f64], sim: &[f64]) -> f64 {
     let mut sum_y: f64 = 0.0;
 
