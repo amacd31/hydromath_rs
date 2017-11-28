@@ -84,9 +84,9 @@ pub fn nse(obs: &[f64], sim: &[f64]) -> f64 {
     }
 
     if e1 == 0.0f64 {
-        return 1.0f64;
+        return 1.0;
     } else {
-        return 1.0f64 - e1 / e2;
+        return 1.0 - e1 / e2;
     }
 }
 
