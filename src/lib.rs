@@ -69,7 +69,7 @@ pub fn rmse(obs: &[f64], sim: &[f64]) -> f64 {
 */
 pub fn nse(obs: &[f64], sim: &[f64]) -> f64 {
 
-    let m: f64 = obs.iter().fold(0f64, std::ops::Add::add) / (obs.len() as f64);
+    let m: f64 = obs.iter().sum::<f64>() / (obs.len() as f64);
 
     //int t;
     let mut e1: f64 = 0.0;
