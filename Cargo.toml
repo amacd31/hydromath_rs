@@ -2,6 +2,7 @@
 name = "hydromath"
 version = "0.1.0"
 authors = ["Andrew MacDonald <andrew@maccas.net>"]
+edition = "2021"
 
 [lib]
-crate-type = ["rlib", "dylib", "lib"]
+crate-type = ["cdylib", "lib"]
