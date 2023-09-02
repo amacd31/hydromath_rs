@@ -6,3 +6,10 @@ edition = "2021"
 
 [lib]
 crate-type = ["cdylib", "lib"]
+
+[features]
+python = ["pyo3", "numpy"]
+
+[dependencies]
+pyo3 = { version = "0.19.2", features = ["extension-module"], optional = true }
+numpy = { version = "0.19", optional = true }
