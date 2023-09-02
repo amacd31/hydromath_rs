@@ -10,7 +10,7 @@ with open('hydromath.h') as header:
 lib_name = find_library('hydromath')
 __lib = __ffi.dlopen('target/debug/{0}'.format(lib_name))
 
-mse_c = __lib.mse_c
+mse_c = __lib.mse
 
 def mse(obs, sim):
     assert len(obs) == len(sim)

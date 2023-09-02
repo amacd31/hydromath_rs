@@ -9,6 +9,7 @@ crate-type = ["cdylib", "lib"]
 
 [features]
 python = ["pyo3", "numpy"]
+c-api = []
 
 [dependencies]
 pyo3 = { version = "0.19.2", features = ["extension-module"], optional = true }
