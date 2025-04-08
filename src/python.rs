@@ -31,7 +31,7 @@ create_python_numpy_function!(nse);
 create_python_numpy_function!(kge);
 
 #[pymodule]
-pub fn hydromath(_py: Python, m: &PyModule) -> PyResult<()> {
+pub fn hydromath(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(mse, m)?)?;
     m.add_function(wrap_pyfunction!(rmse, m)?)?;
     m.add_function(wrap_pyfunction!(nse, m)?)?;

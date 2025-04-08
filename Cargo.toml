@@ -12,5 +12,5 @@ python = ["pyo3", "numpy"]
 c-api = []
 
 [dependencies]
-pyo3 = { version = "0.19.2", features = ["extension-module"], optional = true }
-numpy = { version = "0.19", optional = true }
+pyo3 = { version = "0.24.1", features = ["extension-module"], optional = true }
+numpy = { version = "0.24", optional = true }
